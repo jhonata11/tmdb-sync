@@ -3,6 +3,7 @@ import * as letterboxd from './letterboxd'
 import * as tmdb from './tmdb'
 import { config } from './config'
 ;(async () => {
+  console.log('============ Starting ============')
   const client = await tmdb.init(config)
   const lastMovie = await client.getLastWatchedMovie()
   const letterboxdMovies: FeedItem[] = await letterboxd.getFeed(
@@ -30,8 +31,11 @@ import { config } from './config'
   // Ensure rating sequence
   for (const movie of detailedMovies) {
     const { id, rating, title, year } = movie as any
-    console.log(`Rating ${id} - ${title} (${year})`)
+    const movieInfo = `${id} - ${title} (${year})`
+    console.log(`${movieInfo} [Starting]`)
     const response = await client.rateMovie(id, rating)
-    console.log(`============= ${response} ===============`)
+    console.log(`${movieInfo} [${response}]`)
   }
+
+  console.log('============= Finish =============')
 })()
