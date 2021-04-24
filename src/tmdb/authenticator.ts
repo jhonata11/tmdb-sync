@@ -47,12 +47,10 @@ export class Authenticator {
   }
 
   public async createNewSession(): Promise<Session> {
-    console.log('Authentication started')
     const token1 = await this.getFirstToken()
     const token2 = await this.authenticateWithCredentials(token1)
     const sessionId = await this.getSessionFromToken(token2)
-    const details: { id: string } = await this.accountDetails(sessionId)
-    console.log('Authentication done')
+    const details = await this.accountDetails(sessionId)
     return {
       sessionId,
       userId: details.id,
