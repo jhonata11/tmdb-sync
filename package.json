@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "start": "ts-node ./src/index.ts",
-    "test": "jest --colors --coverage test",
+    "test": "prettier --check . && jest --colors --coverage test",
     "format": "prettier --write ."
   },
   "author": "",
