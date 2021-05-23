@@ -42,11 +42,9 @@ async function importMovies(user: string) {
 }
 
 async function start(users: string[]) {
-  for(const user of users) {
-    await importMovies(user);
+  for (const user of users) {
+    await importMovies(user)
   }
-};
+}
 
-start(users);
-
-
+start(users)
