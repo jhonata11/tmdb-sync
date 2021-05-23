@@ -1,9 +1,11 @@
 import { FeedItem } from './letterboxd'
 import * as letterboxd from './letterboxd'
 import * as tmdb from './tmdb'
-import { config } from './config'
-;(async () => {
-  console.log('============ Starting ============')
+import { users, getConfig } from './config'
+
+async function importMovies(user: string) {
+  console.log(`============ Starting ${user} ============`)
+  const config = getConfig(user)
   const client = await tmdb.init(config)
   const lastMovie = await client.getLastWatchedMovie()
   const letterboxdMovies: FeedItem[] = await letterboxd.getFeed(
@@ -36,6 +38,15 @@ import { config } from './config'
     const response = await client.rateMovie(id, rating)
     console.log(`${movieInfo} [${response}]`)
   }
+  console.log(`============= Finish ${user} =============`)
+}
 
-  console.log('============= Finish =============')
-})()
+async function start(users: string[]) {
+  for(const user of users) {
+    await importMovies(user);
+  }
+};
+
+start(users);
+
+
