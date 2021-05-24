@@ -1,10 +1,10 @@
 import { Authenticator } from './authenticator'
 import { MovieClient } from './movieClient'
-import { Config } from '../config'
+import { Config, tmdbApiKey } from '../config'
 import axiosInstance from './axiosInstance'
 
+const instance = axiosInstance(tmdbApiKey)
 export const init = async (config: Config) => {
-  const instance = axiosInstance(config)
   const authenticator = new Authenticator(
     instance,
     config.tmdbUsername,

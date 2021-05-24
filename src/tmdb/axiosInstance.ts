@@ -1,11 +1,10 @@
 import axios, { AxiosInstance } from 'axios'
-import { Config } from '../config'
 
-export default (config: Config) => {
+export default (key: string) => {
   const instance: AxiosInstance = axios.create({
     baseURL: 'https://api.themoviedb.org/3',
     params: {
-      api_key: config.tmdbApiKey,
+      api_key: key,
     },
   })
   return instance
