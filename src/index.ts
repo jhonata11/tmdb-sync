@@ -4,8 +4,8 @@ import * as exporter from './exporter'
 
 async function start(users: string[]) {
   for (const user of users) {
-    // await importer.importMovies(user)
-    await exporter.exportMovies(user)
+    await importer.importMovies(user)
+    // await exporter.exportMovies(user)
   }
 }
 
