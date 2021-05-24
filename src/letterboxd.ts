@@ -5,12 +5,14 @@ export interface FeedItem {
   title: string
   year: number
   rating: number
+  watchedDate: string
 }
 
 interface Item {
   'letterboxd:filmTitle': string
   'letterboxd:filmYear': number
   'letterboxd:memberRating': number
+  'letterboxd:watchedDate': string
 }
 
 export async function getFeed(username: string): Promise<FeedItem[]> {
@@ -23,6 +25,7 @@ export async function getFeed(username: string): Promise<FeedItem[]> {
       title: item['letterboxd:filmTitle'],
       year: Number(item['letterboxd:filmYear']),
       rating: Number(item['letterboxd:memberRating']) * 2,
+      watchedDate: item['letterboxd:watchedDate'],
     }
   })
 }

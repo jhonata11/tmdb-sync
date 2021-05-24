@@ -23,7 +23,11 @@ export class MovieClient {
     )
     const { results, total_pages } = res.data
     const finalResponse = await Promise.all(
-      results.map((el: any) => this.getMovieById(el.id))
+      results.map(async (el: any) => {
+        const detail = await this.getMovieById(el.id)
+        // detail.rating = el.rating
+        return { ...detail, rating: el.rating / 2 }
+      })
     )
     if (currentPage === total_pages) {
       return finalResponse
