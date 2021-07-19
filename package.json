@@ -6,7 +6,6 @@
   "scripts": {
     "build": "tsc",
     "start": "npm run import",
-    "import": "ts-node ./src/index.ts -i",
     "export": "ts-node ./src/index.ts -e",
     "test": "prettier --check . && jest --colors --coverage test",
     "format": "prettier --write ."
